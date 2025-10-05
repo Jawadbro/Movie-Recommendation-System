@@ -1,222 +1,146 @@
-🎬 Movie Recommendation System
+# 🎬 Movie Recommendation System
 
-A comprehensive implementation and comparison of multiple recommendation algorithms built on the MovieLens 1M dataset.
-This project explores both classical and neural approaches — from simple baselines to a Neural Collaborative Filtering model — demonstrating preprocessing, modeling, evaluation, and visualization steps in a single Jupyter notebook.
+A comprehensive implementation and comparison of **five recommendation algorithms** built on the **MovieLens 1M Dataset**.  
+This project explores both traditional and modern approaches — from simple baselines to neural networks — to understand what makes a good recommender system.
 
-📚 Table of Contents
+---
 
-Overview
+## 📘 Overview
 
-Features
+This notebook demonstrates the step-by-step process of building a **Movie Recommendation Engine** using 1 million real-world movie ratings.  
+It focuses on understanding **user preferences**, **item relationships**, and **predictive modeling** techniques.
 
-Algorithms Implemented
+**Key Highlights**
+- Comparative analysis of 5 recommendation methods  
+- Clean modular code with clear workflow sections  
+- Integration of both classical ML and neural network techniques  
+- Real dataset from **MovieLens 1M**  
 
-Dataset
+---
 
-Repository Structure
+## 🧠 Algorithms Implemented
 
-Tech Stack
+| Algorithm | Type | Description |
+|------------|------|-------------|
+| 🎲 **Random Baseline** | Heuristic | Predicts ratings randomly (benchmark). |
+| ⭐ **Popularity-Based** | Non-personalized | Recommends most popular movies. |
+| 🧩 **Item-Based Collaborative Filtering (ItemCF)** | Memory-based CF | Finds similarity between items using cosine similarity. |
+| 📊 **Matrix Factorization (SVD)** | Model-based CF | Learns latent user–item features using singular value decomposition. |
+| 🧠 **Neural Collaborative Filtering** | Deep Learning | Uses embeddings + neural layers to model nonlinear user–item interactions. |
 
-Installation
+---
 
-Usage
+## 📊 Dataset
 
-Evaluation & Results
+**Dataset:** [MovieLens 1M](https://grouplens.org/datasets/movielens/1m/)  
+**Details:**
+- 6,040 users  
+- 3,883 movies  
+- 1,000,209 ratings  
+- Demographic data: gender, age, occupation, zip code  
 
-Performance Visualization
+**Files Used:**
+- `movies.dat` — Movie information (movieID, title, genres)  
+- `ratings.dat` — User–movie ratings (userID, movieID, rating, timestamp)  
+- `users.dat` — User demographics  
 
-Future Work
+---
 
-Contributing
+## ⚙️ Tech Stack
 
-License
+| Category | Tools / Libraries |
+|-----------|------------------|
+| **Data Handling** | Pandas, NumPy |
+| **Modeling** | PyTorch, scikit-learn, Surprise |
+| **Similarity Computation** | SciPy |
+| **Evaluation Metrics** | Precision@K, Recall@K, RMSE |
 
-Author
+---
 
-Acknowledgements
+## 🚀 Workflow
 
-🧩 Overview
+1. **Data Loading**  
+   Load and preprocess MovieLens 1M dataset (custom delimiter `::` and encoding `latin-1`).  
+2. **Data Preparation**  
+   Split data into training and test sets; generate user–item matrices.  
+3. **Model Training**  
+   Implement multiple algorithms: Random, Popularity, ItemCF, SVD, Neural CF.  
+4. **Evaluation**  
+   Measure performance using Precision@10, Recall@10, and RMSE.  
+5. **Comparison**  
+   Analyze and visualize which model performs best across metrics.
 
-This notebook demonstrates the end-to-end process of building a Movie Recommendation Engine using the MovieLens 1M dataset (≈1,000,209 ratings).
-It focuses on understanding user preferences, item relationships, and model performance with clear code and visualizations.
+---
 
-Goals
+## 🏆 Results
 
-Implement several recommendation strategies.
+| Model | Precision@10 | Notes |
+|--------|---------------|-------|
+| Random Baseline | ~2% | For benchmarking only |
+| Popularity-Based | ~8% | Works decently for cold-start users |
+| ItemCF | **32.1%** | Best performance overall |
+| SVD | ~29% | Strong latent feature model |
+| Neural CF | ~30% | Slightly underperforms due to limited data |
 
-Compare performance using ranking and rating metrics.
+---
 
-Provide a reproducible notebook for further experimentation.
+## 💡 Insights
 
-✨ Features
+- Simple **Item-Based Collaborative Filtering** remains highly effective on explicit rating datasets like MovieLens.  
+- Neural models require **larger and richer datasets** to outperform traditional methods.  
+- Proper **evaluation (Precision@K)** is essential for fair model comparison.  
 
-Data ingestion & cleaning for MovieLens 1M (:: delimiter, latin-1 encoding)
+---
 
-Train/test split and evaluation pipeline
+## 🧩 How to Run
 
-Implementations of: Random baseline, Popularity-based recommender, Item-based CF, SVD matrix factorization, Neural Collaborative Filtering
+### 🔧 Prerequisites
+Make sure you have the following installed:
+```bash
+pip install pandas numpy torch scikit-learn scipy surprise
+```
 
-Metric calculations: Precision@K, Recall@K, RMSE
+### ▶️ Run the Notebook
+1. Download the [MovieLens 1M Dataset](https://grouplens.org/datasets/movielens/1m/).  
+2. Place the dataset folder in your working directory.  
+3. Open and run the Jupyter Notebook:
+   ```bash
+   jupyter notebook movie-recommendation-system.ipynb
+   ```
 
-Visual comparison of model performance
+---
 
-Modular and well-structured notebook format
+## 🧪 Future Work
 
-🧠 Algorithms Implemented
-Algorithm	Type	Description
-🎲 Random Baseline	Heuristic	Random rating predictions for benchmarking
-⭐ Popularity-Based	Non-personalized	Recommend most popular movies by rating count/average
-🧩 Item-Based Collaborative Filtering (ItemCF)	Memory-based CF	Compute item–item similarity (e.g., cosine) and recommend similar items
-📊 Matrix Factorization (SVD)	Model-based CF	Latent factor model (SVD) to predict ratings
-🧠 Neural Collaborative Filtering	Deep Learning	Embeddings + dense layers to model nonlinear user–item interactions
-📊 Dataset
+- ✅ Integrate **user-based collaborative filtering**  
+- ✅ Add **hybrid recommender** (content + collaborative)  
+- 🔄 Hyperparameter tuning with **Bayesian Optimization**  
+- ⚡ Deploy as a **web API** using FastAPI or Flask  
+- 🎯 Use **deep embeddings** from movie metadata (e.g., genres, titles, embeddings)
 
-MovieLens 1M — GroupLens
+---
 
-Users: 6,040
+## 📈 Performance Visualization
 
-Movies: 3,883
+You can visualize comparison results using precision–recall plots or bar charts (included in the notebook).
 
-Ratings: 1,000,209
+---
 
-Files used:
+## 🤝 Contributing
 
-movies.dat — movieID, title, genres
+Contributions are welcome!  
+If you’d like to enhance model performance, improve visualization, or add deployment capabilities:
+1. Fork this repository  
+2. Create a new branch (`feature-xyz`)  
+3. Commit your changes  
+4. Open a Pull Request 🚀  
 
-ratings.dat — userID, movieID, rating, timestamp
+---
 
-users.dat — user demographics (gender, age, occupation, zip)
+## 🧾 License
 
-Note: Download the dataset from GroupLens and place the files in your working directory or a data/ folder as expected by the notebook.
+This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.
 
-🗂️ Repository Structure (Suggested)
-movie-recommendation-system/
-├─ movie-recommendation-system.ipynb
-├─ README.md
-├─ requirements.txt
-├─ data/
-│  ├─ movies.dat
-│  ├─ ratings.dat
-│  └─ users.dat
-├─ notebooks/ (optional)
-└─ LICENSE
+---
 
-⚙️ Tech Stack
-Category	Tools / Libraries
-Language	Python 3.8+
-Data Handling	Pandas, NumPy
-Modeling	PyTorch, scikit-learn, Surprise
-Similarity Computation	SciPy
-Evaluation Metrics	Precision@K, Recall@K, RMSE
-Environment	Jupyter Notebook
-🧰 Installation
 
-Clone the repository:
-
-git clone https://github.com/yourusername/movie-recommendation-system.git
-cd movie-recommendation-system
-
-
-(Optional but recommended) Create a virtual environment:
-
-python -m venv venv
-source venv/bin/activate   # macOS/Linux
-venv\Scripts\activate      # Windows
-
-
-Install dependencies:
-
-pip install -r requirements.txt
-
-
-If you don’t have a requirements.txt file yet, install manually:
-
-pip install pandas numpy torch scikit-learn scipy surprise jupyter
-
-▶️ Usage
-Running the Notebook
-
-Download the MovieLens 1M Dataset
-.
-
-Place movies.dat, ratings.dat, and users.dat in a data/ folder or the notebook directory.
-
-Launch the notebook:
-
-jupyter notebook movie-recommendation-system.ipynb
-
-
-Run all cells in order — each section (data prep, model training, evaluation) is clearly labeled.
-
-Optional (Command Line)
-
-If you convert notebook sections into scripts, you might use:
-
-python train_itemcf.py --data data/ratings.dat --topk 10
-python evaluate_model.py --model itemcf --metrics precision@10,recall@10
-
-🧮 Evaluation & Results
-Metrics Used
-
-Precision@K
-
-Recall@K
-
-RMSE
-
-Example Results (Notebook Run)
-Model	Precision@10	Notes
-Random Baseline	~2%	Benchmark
-Popularity-Based	~8%	Works well for cold-start users
-ItemCF	32.1%	Best performing overall
-SVD	~29%	Strong latent feature model
-Neural CF	~30%	Competitive, can improve with tuning
-
-Note: Results vary with data splits and hyperparameters. Re-run the evaluation cells for consistent numbers.
-
-📈 Performance Visualization
-
-The notebook includes visualization cells for:
-
-Precision@K comparison across models
-
-Recall@K bar charts
-
-RMSE distribution plots
-
-These plots help you quickly understand which algorithms generalize better across the dataset.
-
-🔮 Future Work
-
-Add User-Based Collaborative Filtering
-
-Implement a Hybrid Recommender (Content + CF)
-
-Perform Bayesian Hyperparameter Optimization
-
-Add metadata-based embeddings (genres, titles)
-
-Build a FastAPI/Flask REST API for real-time recommendation
-
-Extend to larger datasets (MovieLens 10M / 20M)
-
-Explore implicit feedback methods (clicks, watch time)
-
-🤝 Contributing
-
-Contributions are welcome!
-If you’d like to enhance model performance, improve visualization, or add deployment features:
-
-Fork this repository
-
-Create a new branch (feature/your-feature-name)
-
-Commit your changes
-
-Open a Pull Request 🚀
-
-🧾 License
-
-This project is licensed under the MIT License.
-See the LICENSE
- file for more details.
